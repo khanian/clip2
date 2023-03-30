@@ -31,7 +31,9 @@ public class Clip2Application {
                 Map<String, TopicDescription> descriptionMap = adminClient.describeTopics(Collections.singleton(topicName)).allTopicNames().get();
                 System.out.println(descriptionMap);
 
-                adminClient.deleteTopics(Collections.singleton(topicName));
+                if(!topicListing.isInternal()) {
+                    adminClient.deleteTopics(Collections.singleton(topicName));
+                }
             }
         };
     }
